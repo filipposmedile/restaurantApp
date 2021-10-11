@@ -1,0 +1,356 @@
+/* FONTS */
+
+@font-face { 
+    font-family: Fressia; src: url('../fonts/Fressia.ttf');
+} 
+@font-face { 
+    font-family: 'comic sans MS'; src: url('../fonts/ComicSansMS.ttf');
+} 
+
+/* STYLES */
+
+.st-card{
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    border:2px solid #FF005C;
+}
+.bar-colored{
+    height: 3px;
+    background-color: #006AFF;
+}
+.bar-colored-2{
+    height: 3px;
+    background-color: white;
+}
+.blue-bg{
+    width:100%;
+    height: 100vh;
+    background-image: url('/storage/images/bg-blue.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card-top{
+    width: 100%;
+    color: #FF005C;
+    font-size: 180%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-family: "Comic sans MS";
+    text-align: center;
+}
+.card-center{
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+    border-top:2px solid #FF005C;
+    border-bottom:2px solid #FF005C;
+}
+.card-bottom{
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #FF005C;
+    font-size: 160%;
+    font-family: "Comic sans MS";
+    text-align: center;
+}
+#mini-logo-blue{
+    height: 40px;
+}
+.menu-bar-link{
+    color: #006AFF;
+    font-size: 130%;
+    font-weight: bold;
+    text-align: center; 
+    font-family: 'Comic sans MS';
+    margin: 40px;
+}
+.menu-bar-link:hover{
+    text-decoration: none;
+    color: #006AFF;
+    text-shadow: 0 0 10px #006AFF;
+}
+.text-colored{
+    font-size: 150%;
+    font-weight: bold;
+    filter: drop-shadow(0 0 10px white);
+    color: #006AFF;
+    text-align: center;
+    font-family: 'Comic sans MS';
+}
+.full-block{
+    height: 100vh;
+   
+}
+.pink-bg{
+    position: relative;
+    background-image: url('/storage/images/bg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+}
+#topBox-imgMiddle{
+    position: absolute;
+    top: 50vh;
+    height: 400px;
+    width: 100%;
+    background-image: url('/storage/images/bg-tris.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    border-top:10px solid #006AFF;
+    border-bottom:10px solid #006AFF;
+    background-size: cover;
+}
+.rounded-box{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border:10px solid #006AFF;
+    border-radius: 50%;
+    display: none;
+}
+#img-logo-container{
+    padding: 70px 0;
+    max-width: 700px; 
+    margin: 0px auto;
+    transition: 2s;
+    transform: translate(-200%, 0);
+}
+#main-logo{
+    width: 100%;
+    min-height: auto;
+}
+#menu-bar{
+    position: fixed;
+    padding-top: 12px;
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff65;
+    z-index: 10;
+}
+.input-box{
+    color: #FF005C;
+    font-family: "Comic sans MS";
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+.input-box:focus{
+    border: none;
+    outline: none;
+    border:3px solid #FF80AE;
+}
+.colored-button{
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    color: #FF005C;
+    font-family: "comic sans MS";
+    font-size: 130%;
+}
+.colored-button:hover{
+    background-color: #FF80AE;
+}
+
+/* FLIP CARD */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 200px; 
+    cursor: pointer;
+    margin: 10px;           
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+    background-color: white;
+    box-shadow: 0 0 10px gray;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+    background-color: #FF005C;
+    color: white;
+    box-shadow: 0 0 10px gray;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-family: "comic sans MS";
+    transform: rotateY(180deg);
+}
+
+/* LOADER */
+.loader {
+	border: 16px solid #ffb7d2; /* Light grey */
+	border-top: 16px solid #FF005C; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+	box-shadow: 0 0 10px gray;
+  }
+#loading-page{
+	background-color:white;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+
+  /* SCROLL BAR */
+.customized-scrollbar::-webkit-scrollbar {
+    height: 10px;
+}
+.customized-scrollbar::-webkit-scrollbar-track {
+    height: 10px;
+}
+.customized-scrollbar::-webkit-scrollbar-thumb {
+    height: 10px;
+}
+
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+    background: white;
+    width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        width: 6px;
+        border-radius: 20px;
+    background: lightgray;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #FF005C;
+    }
+
+
+/* GO TOP */
+#go-top{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border: 3px solid white;
+    width: 50px;
+    height: 50px;
+    border-radius:50%; 
+    box-shadow: 0 0 10px gray;
+}
+#go-top-inner{
+    width: 44px;
+    height: 44px;
+    color: white;
+    background-color: #FF005C;
+    opacity: 0.5;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+#go-top-inner:hover{
+    opacity: 1;
+}
+#top-text{
+    color: white;
+    margin:0 auto;
+}
+#top-text:hover{
+    text-decoration: none;
+    color: white;
+}
+
+/* ARROWS */
+.arrow-right{
+    float: right;
+}
+.arrow-left{
+    float: left;
+}
+.arrow{
+    width: 50px;
+    height: 50px;
+}
+.arrow-button{
+    outline: none;
+    background: none;
+    border: none;
+    transition: 0.3s;
+}
+.arrow-button:focus{
+    outline: none;
+    border: none;
+}
+.arrow-button:active{
+    transform: translate(0, 3px);
+}
+
+.fadeInBlock{
+    opacity: 0;
+}
+@media(max-width:768px){
+    
+    .fs-card{
+        width: 80%;
+        margin: 10px auto;
+    }
+    .text-colored{
+        font-size: 20px;
+    }
+    .st-card{
+        width: 80%;
+        margin: 10px auto;
+    }
+    .arrow{
+        display: none;
+    }
+}

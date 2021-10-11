@@ -1,0 +1,45 @@
+/*FADE EFFECT */
+
+function isVisible(elem){
+    var docViewTop = $(window).scrollTop();
+
+    var elemTop = $(elem).offset().top - $(elem).outerHeight(true);
+    //alert(docViewTop + " " + elemTop);
+    return (elemTop < docViewTop);
+}
+
+    $(window).scroll(function() {
+    console.log('scroll');
+    $('.fadeInBlock').each(function(i) {
+        if (isVisible(this)) {
+            $(this).animate({
+            'opacity': '1'
+        }, 500);
+        } else {
+            $(this).css({
+            'opacity': '0'
+        });
+        }
+    });
+    });
+
+/* LOGO SLIDE */
+$(document).ready(function(){
+    $("#loading-page").css("display","none");
+    $('#img-logo-container').css({
+        'transform':'translate(0, 0)',
+    });
+});
+
+/* ARROWS */
+$('#left').click(function(){
+    $('#rotation').animate( { scrollLeft: '-=200' }, 500 );
+});
+$('#right').click(function(){
+    $('#rotation').animate( { scrollLeft: '+=200' }, 500 );
+});
+var msg = '{{Session::get('alert')}}';
+var exist = '{{Session::has('alert')}}';
+if(exist){
+alert(msg);
+}
