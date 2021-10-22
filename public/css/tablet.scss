@@ -1,0 +1,250 @@
+$color1: #FF0063;
+$color2: #333333;
+$color2b: #4e4e4e;
+$color3: #c0c0c0;
+
+
+@mixin colore1{
+    filter: invert(13%) sepia(69%) saturate(7489%) hue-rotate(331deg) brightness(101%) contrast(104%);
+}
+@mixin colore2{
+    filter: invert(16%) sepia(2%) saturate(21%) hue-rotate(314deg) brightness(99%) contrast(88%);
+}
+@mixin flexing{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+@mixin backgrounds{
+    background-position: center;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: fressia;
+    src: url('../fonts/Fressia.ttf');
+}
+@font-face {
+    font-family: comicSans;
+    src: url('../fonts/ComicSansMS.ttf');
+}
+@media (max-width: 1000px) and (min-width:501px) {
+    header{
+        position: fixed;
+        top: -70px;
+        width: 100%;
+        background-color: #4e4e4e80;
+        height: 70px;
+        z-index: 6;
+        transition: 0.5s;
+    }
+    .header-div{
+        width: 49vw;
+        height: 70px;
+        @include flexing;
+        justify-content: center !important;
+        padding: 5px !important;
+        margin:0;
+    }
+    .header-a-link{
+        color: $color1;
+        font-size: 26px;
+        vertical-align: middle;
+        margin: 0;
+        font-family: fressia;
+    }
+    .header-a-link:hover{
+        text-decoration: none;
+        color: $color1;
+    }
+    .header-img-icon{
+        height: 40px;
+        width: 40px;
+        margin-left:10px; 
+        @include colore1;    
+    }
+    .div-main {
+        height: 60vh;
+        width: 100%;
+        background-image: url('../storage/images/gelati2.jpg');
+        @include backgrounds;
+        @include flexing;
+        position: relative;
+        z-index: 5;
+        
+    }
+    .div-text{
+        padding-top: 25vh;
+        border-top: 3px solid $color1;
+        padding-bottom: 40px;
+        position: relative;
+        @include flexing;
+    }
+    .circle{
+        @include backgrounds;
+        border-radius: 50%;
+        border: 3px solid $color1;
+        position: absolute;
+        height: 250px;
+        width: 250px;
+    }
+    .img-logo {
+        width: 50vw;
+        max-width: 300px;
+        transform: translateY(30vh);
+    }
+    body {
+        background: linear-gradient(to right, $color2, $color2b);
+        color: $color3;
+    }
+    .text {
+        color: $color1;
+        font-family: fressia;
+        text-align: center;
+    }
+    .text2{
+        color: $color1;
+        font-family: comicSans;
+        text-align: center;
+    }
+    .div-color-1{
+        margin-bottom: 20px;
+        background-color: $color1;
+        width: 100%;
+        height: 30vh;
+    }
+    .div-color-2{
+        margin-bottom: 20px;
+        background-color: $color2;
+        width: 100%;
+    }
+    .div-color-2b{
+        padding-top: 20px;    
+        padding-bottom: 20px;   
+        border-top: 3px solid $color1;
+        background-color: $color2b;
+        width: 100%;
+        box-shadow: 0 0 15px black;
+    }
+    .div-no-color{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 20px;
+    }
+    #menu{
+        text-align: center;
+        background-image: url('../storage/images/gelati.jpg');
+        @include backgrounds;
+        border-bottom: 3px solid $color1;
+        @include flexing;
+        position: relative;
+        border-top: 3px solid $color1;
+    }
+    .a-menu{
+        color: $color1;
+        text-decoration: none;
+    }
+    .span-menu{
+        color: $color1; 
+        font-family: fressia;
+        font-size: 32pt;
+        transition: 0.5s;
+    }
+    .span-menu:hover {
+        font-size: 36pt;
+    }
+    .a-menu:hover{
+        color: $color1;
+        text-decoration: none;
+    }
+    .img-icon {
+        width: 70px;
+        height: 70px;
+    }
+    .carousel-img{
+        width: 100%;
+    }
+    .carousel{    
+        background-color: white;
+        border: 3px solid $color1;
+        width: 90% !important;
+        margin: auto;
+    }
+    .h1-text{
+        font-family: fressia;
+        color: $color1;
+        text-align: center;
+        font-size: 36px;
+    }    
+    #googleMap{
+        width: 100%;
+        height: 294px;
+        border-bottom: 3px solid $color1;
+        border-top: 3px solid $color1;
+    }
+    #div-google-map{
+        border: 3px solid $color1;    
+        width: 100%;
+        height: 300px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    .footer-a{
+        color: $color1;
+    }
+    .footer-a:hover{
+        text-decoration: none;
+        color: $color1;
+    }
+    #page-loader{
+        position: fixed;
+        z-index: 9998;
+        background-color: white;
+        top: 0;
+        left:0;
+        width: 100vw;
+        height: 100vh;
+        @include flexing;
+        transition: 1s;
+    }
+    #page-loader-2{
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left:0;
+        width: 100vw;
+        height: 100vh;
+        @include flexing;
+        transition: 1s;
+    }
+    #div-loader-logo{
+        width: 140px;
+        height: 140px;
+        margin-top: 8px;
+        margin-left: 4px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    #div-loader{
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        border:10px solid $color3 ;
+        border-top:10px solid $color1;
+        animation-name: rotate;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+    @keyframes rotate {
+        0% {transform: rotate(0);}
+        100%{transform: rotate(360deg);}
+        
+    }
+    #images-grid{
+        display: none;
+    }
+}

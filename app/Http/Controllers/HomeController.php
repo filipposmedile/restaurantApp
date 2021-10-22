@@ -31,12 +31,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $setup = DB::table('setup')->where('id','1')->first();
+        return view('home',[
+            'setup'=>$setup
+        ]);
     }
 
     public function categories(){
 
-        $categories = Category::all();
+        $categories = Category::orderBy('ordine','asc')->get();
         
         $icons = Icon::all();
 
@@ -50,7 +53,7 @@ class HomeController extends Controller
     }
     public function products(){
 
-        $categories = Category::all();
+        $categories = Category::orderBy('ordine','asc')->get();
 
         $setup = DB::table('setup')->where('id','1')->first();
 
@@ -120,8 +123,8 @@ class HomeController extends Controller
         }
 
 
-        DB::table('setup')->where('id','1')->update(['header' =>$request->header,'subHeader' => $request->subHeader,'columns'=>$request->columns,
-        'css'=>$request->css,'font'=>$request->font,'websiteUrl'=>$request->websiteUrl]);
+        DB::table('setup')->where('id','1')->update(['name'=>$request->name,'header' =>$request->header,'subHeader' => $request->subHeader,'columns'=>$request->columns,
+        'layoutMenu'=>$request->layoutMenu,'css'=>$request->css,'font'=>$request->font,'websiteUrl'=>$request->websiteUrl,'openingTime'=>$request->openingTime]);
       
         session()->flash('green-message','Setup Saved');
 

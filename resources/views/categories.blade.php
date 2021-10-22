@@ -38,6 +38,7 @@
             padding: 5px;
             border: 1px solid black;
             margin-bottom: 15px;
+            margin-top: 15px;
         }
         .delete-button{
             color: white;
@@ -101,6 +102,17 @@
 <div class="container">
     <h1 style="text-align: center">Categories</h1>
     <hr class="bar-black">
+    <div class="row">
+        <div class="col-md-5">
+            <p style="padding-top:5px;font-size:20px;">Search</p>
+        
+
+            <input type="text" class="form-control" id="search">
+
+        </div>
+        
+    </div>
+    <br>
     @if (session('green-message'))
         <div class="alert alert-success" id="images-uploaded"  role="alert">
             {{session('green-message')}}
@@ -115,23 +127,41 @@
         <div class="col-md-6">
             <ul style="list-style: none">
                 @foreach ($categories as $category)
-                    <form action="{{route('category.delete',$category->id)}}" method="post">
+                    <form action="{{route('category.delete',$category->id)}}" id="{{$category->name}}" class="category-form" method="post">
                         @csrf
                         @method('DELETE')
                         <li class="list">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <div style="overflow: hidden;">
                                         <a type="button" href="#edit{{$category->id}}" data-toggle="collapse" class="button-collapse">{{$category->name}}</a>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                
+                                <div class="col-md-2">
                                     <button type="submit" class="delete-button">Delete</button>
                                 </div>
                             </div>
                         </li>
                     </form>
-                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="{{route('changeId',[$category->id,'categories'])}}" class="category-form" method="post">
+                                @csrf
+                                <input type="hidden" name="move" value="up">
+                                <input type="hidden" name="ordine" value="{{$category->ordine}}">
+                                <input type="submit" value="Move Down" class="btn btn-primary">
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form action="{{route('changeId',[$category->id,'categories'])}}"  class="category-form"method="post">
+                                @csrf
+                                <input type="hidden" name="move" value="down">
+                                <input type="hidden" name="ordine" value="{{$category->ordine}}">
+                                <input type="submit" value="Move Up" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>    
                         <div id="edit{{$category->id}}" class="collapse">
                             <div class="collapse-sub">
                                 <form action="{{route('category.edit',$category->id)}}" method="post" enctype="multipart/form-data">
@@ -283,5 +313,19 @@
 
         $('#icon-new'+x).val(undefined);
     }
+    $(document).on('input','#search',function(){
+        var valore = $('#search').val().toLowerCase();
+        const classes = document.querySelectorAll('.category-form');
+        classes.forEach((classe)=>{
+            if(classe.id.toLowerCase().includes(valore) == true){
+                classe.style.display = 'block';
+            } else {
+                classe.style.display = 'none';
+            }
+        })
+       if (valore == ""){
+           $('.category-form').css('display','block');
+       }
+    })
 </script>
 @endsection

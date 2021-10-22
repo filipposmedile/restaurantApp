@@ -24,6 +24,10 @@
             height: 3px;
             background-color: black;
         }
+        #openingTime{
+            resize: none;
+            white-space: pre-wrap;
+        }
     </style>
 @endsection
 @section('content')
@@ -44,8 +48,12 @@
             @csrf
             <div class="row">
                 <div class="col-md-6">
+                     
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" name="name" value="@isset($setup->name){{$setup->name}} @endisset" >   
                     <label for="header">Header:</label>
-                    <input type="text" class="form-control" name="header" value="@isset($setup->header){{$setup->header}} @endisset" >    
+                    <input type="text" class="form-control" name="header" value="@isset($setup->header){{$setup->header}} @endisset" >   
+
                 </div>
                 <div class="col-md-6">                    
                     <label for="logo_path">Logo:</label>
@@ -65,6 +73,20 @@
                 <div class="col-md-6">
                     <label for="telephone">Sub Header:</label>
                     <input type="text" class="form-control" name="subHeader" value="@isset($setup->subHeader){{$setup->subHeader}}@endisset">
+                    <label for="layoutMenu">Menu Layout:</label>
+                <select name="layoutMenu" class="form-select" id="layoutMenu">
+                    <option value="imageMenu" @if ($setup->layoutMenu == 'imageMenu')
+                        selected
+                    @endif>Menu with Images</option>
+                    <option value="iconMenu" @if ($setup->layoutMenu == 'iconMenu')
+                        selected
+                    @endif>Menu with Icons</option>
+                </select>
+                <label for="openingTime">Openint Time:</label>
+                <textarea name="openingTime" id="openingTime" class="form-control" rows="3">@isset($setup->openingTime)
+                    {{$setup->openingTime}}
+                @endisset</textarea>
+
                 </div>
                 <div class="col-md-6">
                     <label for="backgroundUrl">Background:</label>
@@ -90,6 +112,7 @@
                     <label for="websiteUrl">Website URL:</label>
                     <input type="text" class="form-control" name="websiteUrl" value="@isset($setup->websiteUrl){{$setup->websiteUrl}}@endisset" required>        
                 </div>
+                
                 <div class="col-md-2">
                     <label for="dCurrency">Columns (between 1-3):</label>
                     <input type="number" step="1" min="1" max="3" class="form-control" name="columns" value="@isset($setup->columns){{$setup->columns}}@endisset">        
@@ -107,10 +130,10 @@
             </div>
         </form>     
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="box-shadow:0px 0px 10px lightgray;padding:30px">
                 <form action="{{route('setup.deleteLogoBackground')}}" method="post">
                     @csrf
                         <div class="form-check form-switch">

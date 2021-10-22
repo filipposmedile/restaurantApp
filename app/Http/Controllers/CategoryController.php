@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Support\Facades\DB;
+
 use App\Category;
 use App\Product;
 
@@ -35,6 +35,21 @@ class CategoryController extends Controller
 
             $category->icon_id = $request->icon;
         }
+
+        $maxOrdine = DB::table('categories')->max('ordine');
+
+        if(is_null($maxOrdine)){
+
+            $category->ordine = 1;
+
+        } else {
+
+            $maxOrdine++;
+
+            $category->ordine = $maxOrdine;
+
+        }
+        
         $category->save();
 
         session()->flash('green-message','Category Saved');

@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('img_path')->nullable();
             $table->text('message')->nullable();
             $table->text('homeUse')->nullable();
+            $table->integer('ordine')->nullable();
             $table->timestamps();
         });
     }

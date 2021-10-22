@@ -56,6 +56,20 @@ class ProductController extends Controller
 
         $product->category_id = $id;
 
+        $maxOrdine = DB::table('products')->max('ordine');
+
+        if(is_null($maxOrdine)){
+
+            $product->ordine = 1;
+
+        } else {
+
+            $maxOrdine++;
+
+            $product->ordine = $maxOrdine;
+
+        }
+
         $product->save();
 
         session()->flash('green-message','Product Added');

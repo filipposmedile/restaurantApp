@@ -80,6 +80,17 @@
 <div class="container">
     <h1 style="text-align: center">Add Products to category "{{$category->name}}"</h1>
     <hr class="bar-black">
+    <div class="row">
+        <div class="col-md-5">
+            <p style="padding-top:5px;font-size:20px;">Search</p>
+        
+
+            <input type="text" class="form-control" id="search">
+
+        </div>
+        
+    </div>
+    <br>
     @if (session('green-message'))
         <div class="alert alert-success" id="images-uploaded"  role="alert">
             {{session('green-message')}}
@@ -93,7 +104,7 @@
     <div class="row">
         <div class="col-md-7">
                 @foreach ($category->products as $product)
-                <form action="{{route('product.update',$product->id)}}" enctype="multipart/form-data" method="post">
+                <form action="{{route('product.update',$product->id)}}" id="{{$product->name}}" class="product-form" enctype="multipart/form-data" method="post">
                     @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -142,8 +153,8 @@
                                     <input type="file" name="images" class="form-control" id="inputGroupFile02">
                                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                 </div>     
-                                <input type="checkbox" name="no_img" class="btn-check" id="btn-check-outlined{{$category->id}}" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btn-check-outlined{{$category->id}}">No Image</label><br>
+                                <input type="checkbox" name="no_img" class="btn-check" id="btn-check-outlined{{$product->id}}" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btn-check-outlined{{$product->id}}">No Image</label><br>
                                 <label for="message">Message for the Homepage:</label>
                                 <textarea name="message" id="message" class="form-control" style="resize: none" rows="3">{{$product->message}}</textarea>       
                                 <label for="homeUse">Use for the Homepage</label>
@@ -155,10 +166,31 @@
                             </div>
                         </div>
                 </form>   
-                <form action="{{route('product.delete',$product->id)}}" method="POST">
-                    @csrf
-                    <input type="submit" class="btn btn-danger" value="Delete" style="margin:5px auto;">
-                </form> 
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <form action="{{route('product.delete',$product->id)}}"  id="{{$product->name}}" class="product-form" method="POST">
+                            @csrf
+                            <input type="submit" class="btn btn-danger" value="Delete" style="margin:5px auto;">
+                        </form> 
+                    </div>
+                    <div class="col-md-4">
+                        <form action="{{route('changeId',[$product->id,'products'])}}" class="product-form" method="post">
+                            @csrf
+                            <input type="hidden" name="move" value="up">
+                            <input type="hidden" name="ordine" value="{{$product->ordine}}">
+                            <input type="submit" value="Move Down" class="btn btn-primary">
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form action="{{route('changeId',[$product->id,'products'])}}" class="product-form" method="post">
+                            @csrf
+                            <input type="hidden" name="move" value="down">
+                            <input type="hidden" name="ordine" value="{{$product->ordine}}">
+                            <input type="submit" value="Move Up" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>    
                 <hr>                
                 @endforeach
         </div>
@@ -196,4 +228,22 @@
     <hr class="black-bar">
     <a href="{{route('products')}}" type="button" class="btn btn-primary">Back</a>
 </div>
+@endsection
+@section('script')
+    <script>
+        $(document).on('input','#search',function(){
+        var valore = $('#search').val().toLowerCase();
+        const classes = document.querySelectorAll('.product-form');
+        classes.forEach((classe)=>{
+            if(classe.id.toLowerCase().includes(valore) == true){
+                classe.style.display = 'block';
+            } else {
+                classe.style.display = 'none';
+            }
+        })
+       if (valore == ""){
+           $('.product-form').css('display','block');
+       }
+    })
+    </script>
 @endsection

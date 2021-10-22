@@ -20,7 +20,9 @@ Route::get('/admin', function () {
 
 Auth::routes();
 
-Route::get('/', 'Tasks@prices')->name('menu');
+Route::get('/', 'Tasks@homepage')->name('homepage');
+
+Route::get('/menu', 'Tasks@prices')->name('menu');
 
 Route::post('/email','Tasks@email')->name('email');
 
@@ -56,5 +58,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/home/setup','HomeController@setup')->name('setup');
     Route::post('/home/setup/save','HomeController@setupSave')->name('setup.save');
     Route::post('/home/setup/deleteLogoBackground','HomeController@deleteLogoBackground')->name('setup.deleteLogoBackground');
+
+    
 });
 

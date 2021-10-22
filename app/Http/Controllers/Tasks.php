@@ -15,14 +15,37 @@ class Tasks extends Controller
 
     protected $prodottos;
 
-
-    public function prices(){
-
-        $categories = Category::all();
+    public function homepage() {
 
         $setup = DB::table('setup')->where('id','1')->first();
 
-        return view('prices',[
+        $categories = Category::all();
+
+        $products = Product::all();
+
+        $images = Image::all();
+
+        return view('front.homepage',[
+            'setup' => $setup,
+            'categories' => $categories,
+            'products' => $products,
+            'images' => $images
+        ]);
+    }
+
+    public function prices(){
+
+        $categories = Category::orderBy('ordine','asc')->get();
+
+        $setup = DB::table('setup')->where('id','1')->first();
+
+        if($setup->layoutMenu == "iconMenu"){
+            $menu = "menu-icons";
+        }
+        if($setup->layoutMenu == "imageMenu"){
+            $menu = "menu-images";
+        }
+        return view($menu,[
             'categories' => $categories,
             'setup'=>$setup,
         ]);

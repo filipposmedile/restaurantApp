@@ -70,4 +70,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    public function showRegistrationForm()
+    {
+        $setup = DB::table('setup')->where('id','1')->first();
+    
+        return view('auth.register',[
+            'setup'=>$setup
+        ]);
+    }
 }

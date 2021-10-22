@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->text('img_path')->nullable();
             $table->unsignedBigInteger('icon_id')->constrained()->onDelete('cascade')->nullable();
+            $table->integer('ordine')->nullable();
             $table->timestamps();
         });
     }
